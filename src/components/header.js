@@ -8,30 +8,30 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
+import { Link } from "gatsby"
+
 import { rhythm } from "../utils/typography"
 
-const Bio = () => {
+const Header = () => {
   const data = useStaticQuery(graphql`
-    query BioQuery {
+    query HeaderQuery {
       site {
         siteMetadata {
-          author
+          title
         }
       }
     }
   `)
 
-  const { author } = data.site.siteMetadata
+  const { title } = data.site.siteMetadata
+  
   return (
-    <div
-      style={{
-        display: `flex`,
-        marginBottom: rhythm(2.5),
-      }}
-    >
-      <p>Written by <strong>{author}</strong>.</p>
-    </div>
+    <header className="py-4 mb-4">
+        <Link to="/">
+            <h1 className="text-6xl font-black hover:opacity-75">{ title }</h1>
+        </Link>
+    </header>
   )
 }
 
-export default Bio
+export default Header
